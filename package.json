@@ -8,7 +8,7 @@
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint --ext .js,.vue src",
     "fix": "eslint --ext .js,.vue src --fix",
-    "prettier:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,less,md,vue}",
+    "prettier:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,less,md,vue}\"",
     "format": "npm run prettier:fix && npm run fix"
   },
   "keywords": [

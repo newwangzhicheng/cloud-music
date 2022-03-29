@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <van-button type="primary">这是van创建的button</van-button>
+  <van-button type="primary">这是vant创建的按钮</van-button>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
     <h3>

@@ -9,12 +9,19 @@ module.exports = {
     },
     output: {
         filename: 'assets/js/[name].[contenthash:6].js',
-        path: path.resolve(__dirname, 'dist/assets')
+        path: path.resolve(__dirname, 'dist'),
+        clean: true
+    },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'src')
+        }
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
+                exclude: /node_modules/,
                 loader: 'babel-loader'
             },
             {
@@ -22,20 +29,16 @@ module.exports = {
                 loader: 'vue-loader'
             },
             {
-                test: /\.svg$/,
-                type: 'asset/inline'
-            },
-            {
-                test: /\.(png|jpe?g|gif)$/,
-                type: 'asset/resource',
-            },
-            {
-                test: /\.css/,
-                use: ['style-loader', 'css-loader']
-            },
-            {
-                test: /\.scss/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
+                test: /\.(png|jpe?g|gif|svg)$/,
+                type: 'asset',
+                parser: {
+                    dataUrlCondition: {
+                        maxSize: 8 * 1024
+                    }
+                },
+                generator: {
+                    filename: 'assets/img/[contenthash:6][ext]'
+                }
             }
         ]
     },

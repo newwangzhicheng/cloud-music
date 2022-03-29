@@ -1,6 +1,9 @@
 const autoprefixer = require('autoprefixer');
 module.exports = {
-    plugins: [
-        autoprefixer
-    ]
+    plugins: {
+        autoprefixer,
+        'postcss-px-to-viewport': {
+            viewportWidth: 375
+        }
+    }
 }

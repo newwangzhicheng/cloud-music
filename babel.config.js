@@ -25,6 +25,14 @@ module.exports = {
         style: true
       },
       'vant'
+    ],
+    [
+      'import',
+      {
+        libraryName: '@icon-park/vue-next',
+        libraryDirectory: 'es/icons',
+        camel2DashComponentName: false
+      }
     ]
   ]
 };

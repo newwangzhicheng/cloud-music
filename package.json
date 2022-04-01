@@ -17,6 +17,7 @@
   "author": "jaywang",
   "license": "ISC",
   "dependencies": {
+    "@icon-park/vue-next": "^1.3.6",
     "core-js": "^3.21.1",
     "vant": "^4.0.0-alpha.1",
     "vue": "^3.2.31",

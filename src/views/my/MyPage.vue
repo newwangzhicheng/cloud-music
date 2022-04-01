@@ -1,7 +1,9 @@
 <template>
   <div class="my">
     <div class="my__grid-card">
-      <ProfileCard />
+      <CardProfile />
+      <CardApp />
+      <CardFavorites />
     </div>
     <div class="my__top-bar">
       <HamburgerButton theme="outline" size="24" fill="#ffffff" />
@@ -13,7 +15,9 @@
 <script setup>
 import { HamburgerButton, Search } from '@icon-park/vue-next';
 import TopProfile from './TopProfile.vue';
-import ProfileCard from './ProfileCard.vue';
+import CardProfile from './CardProfile.vue';
+import CardApp from './CardApp.vue';
+import CardFavorites from './CardFavorites.vue';
 import { ref } from 'vue';
 
 const hasScrollDown = ref(false);
@@ -30,7 +34,6 @@ $top-bar-height: 40px;
     width: calc(100% - 2 * $border-space);
     height: $top-bar-height;
     padding: $border-space;
-    background: rgb(15, 15, 15);
 
     display: flex;
     justify-content: space-between;

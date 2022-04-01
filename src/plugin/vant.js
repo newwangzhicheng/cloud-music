@@ -1,6 +1,6 @@
-import { Button, Image as VanImage } from 'vant';
+import { Lazyload, Button, Image as VanImage } from 'vant';
 
-const components = [Button, VanImage];
+const components = [Lazyload, Button, VanImage];
 
 export function vant(app) {
   for (let i = 0; i < components.length; i++) {

@@ -4,8 +4,8 @@
       <template #error><Avatar theme="outline" size="30" fill="#333" /></template>
       <template #loading><Avatar theme="outline" size="30" fill="#333" /></template>
     </VanImage>
-    <div v-if="login" class="profile-card__user-name">用户名称</div>
-    <div v-else class="profile-card__user-name">立即登陆 ›</div>
+    <div v-if="login" class="profile-card__user-name select_none">用户名称</div>
+    <div v-else class="profile-card__user-name select_none">立即登陆 ›</div>
   </CardBlock>
 </template>
 <script setup>

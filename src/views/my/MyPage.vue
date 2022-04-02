@@ -4,6 +4,11 @@
       <CardProfile />
       <CardApp />
       <CardFavorites />
+      <VanTabs class="tab">
+        <VanTab title="创建歌单" class="tab__title"></VanTab>
+        <VanTab title="收藏歌单"></VanTab>
+      </VanTabs>
+      <CardPlaylist v-if="login" :clauses="clauses" />
     </div>
     <div class="my__top-bar">
       <HamburgerButton theme="outline" size="24" fill="#ffffff" />
@@ -18,13 +23,124 @@ import TopProfile from './TopProfile.vue';
 import CardProfile from './CardProfile.vue';
 import CardApp from './CardApp.vue';
 import CardFavorites from './CardFavorites.vue';
-import { ref } from 'vue';
+import PlaylistCluaseModel from '@/models/PlaylistClauseModel.js';
+import { defineAsyncComponent, ref } from 'vue';
 
 const hasScrollDown = ref(false);
+
+const CardPlaylist = defineAsyncComponent(() => import('./CardPlaylist.vue'));
+const login = ref(false);
+setTimeout(() => {
+  login.value = true;
+}, 2000);
+const clauses = [
+  new PlaylistCluaseModel({
+    title: 'Lover',
+    songNumber: 9,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: 'running',
+    songNumber: 10,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  }),
+  new PlaylistCluaseModel({
+    title: '我所怀念的',
+    songNumber: 11,
+    src: null,
+    isLove: false
+  })
+];
 </script>
 <style lang="scss" scoped>
 @import '@/assets/var.scss';
-$top-bar-height: 40px;
+$top-bar-height: 30px;
 .my {
   background: rgb(15, 15, 15);
   height: 100vh;
@@ -33,7 +149,8 @@ $top-bar-height: 40px;
     top: 0;
     width: calc(100% - 2 * $border-space);
     height: $top-bar-height;
-    padding: $border-space;
+    padding: 6px $border-space;
+    background: $bar-backgroundcolor;
 
     display: flex;
     justify-content: space-between;
@@ -45,6 +162,18 @@ $top-bar-height: 40px;
     background: rgba(0, 0, 0, 0);
 
     display: grid;
+  }
+  .tab {
+    position: sticky;
+    top: $top-bar-height;
+    :deep(.van-tabs__nav) {
+      background: $bar-backgroundcolor;
+    }
+    :deep(.van-tab),
+    :deep(.van-tab--active) {
+      color: white;
+      font-weight: 600;
+    }
   }
 }
 </style>

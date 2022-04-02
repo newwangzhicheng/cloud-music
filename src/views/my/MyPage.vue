@@ -4,7 +4,7 @@
       <CardProfile />
       <CardApp />
       <CardFavorites />
-      <VanTabs class="tab">
+      <VanTabs class="tab" @click="clicked">
         <VanTab title="创建歌单" class="tab__title"></VanTab>
         <VanTab title="收藏歌单"></VanTab>
       </VanTabs>
@@ -30,6 +30,12 @@ const hasScrollDown = ref(false);
 
 const CardPlaylist = defineAsyncComponent(() => import('./CardPlaylist.vue'));
 const login = ref(false);
+
+const clickedName = ref(1);
+function clicked() {
+  clickedName.value++;
+}
+
 setTimeout(() => {
   login.value = true;
 }, 2000);
@@ -143,7 +149,6 @@ const clauses = [
 $top-bar-height: 30px;
 .my {
   background: rgb(15, 15, 15);
-  height: 100vh;
   .my__top-bar {
     position: fixed;
     top: 0;
@@ -169,10 +174,23 @@ $top-bar-height: 30px;
     :deep(.van-tabs__nav) {
       background: $bar-backgroundcolor;
     }
-    :deep(.van-tab),
+    :deep(.van-tab) {
+      font-size: 16px;
+      color: $second-text-color;
+    }
     :deep(.van-tab--active) {
       color: white;
       font-weight: 600;
+    }
+
+    :deep(.van-tab__text--ellipsis) {
+      z-index: 100;
+    }
+    :deep(.van-tabs__line) {
+      width: 70px;
+      height: 8px;
+      bottom: 25px;
+      background: linear-gradient(90deg, rgb(235, 78, 71), rgb(238, 127, 123));
     }
   }
 }

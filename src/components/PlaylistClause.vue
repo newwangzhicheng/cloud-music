@@ -45,7 +45,7 @@ defineProps({
   .playlist-clause__song-number {
     grid-area: song-number;
     font-size: 10px;
-    color: $second-text-color;
+    color: $third-text-color;
     align-self: start;
   }
 }

@@ -15,7 +15,7 @@ const router = createRouter({
         {
           path: 'my',
           name: Pages.my,
-          component: () => MyPage
+          component: MyPage
         }
       ]
     }

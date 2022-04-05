@@ -3,6 +3,10 @@ const { merge } = require('webpack-merge');
 
 module.exports = merge(common, {
   mode: 'development',
+  devServer: {
+    port: 9090
+  },
+  devtool: 'eval-source-map',
   module: {
     rules: [
       {

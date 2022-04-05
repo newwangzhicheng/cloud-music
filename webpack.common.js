@@ -2,6 +2,7 @@ const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { DefinePlugin } = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -45,11 +46,16 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, './index.html')
+      template: path.resolve(__dirname, 'index.html'),
+      favicon: path.resolve(__dirname, 'public/favicon.ico'),
+      title: '网易云音乐'
     }),
     new DefinePlugin({
       __VUE_PROD_DEVTOOLS__: false,
       __VUE_OPTIONS_API__: true
+    }),
+    new CopyPlugin({
+      patterns: [{ from: 'static', to: './' }]
     })
   ]
 };

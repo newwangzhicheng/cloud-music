@@ -4,11 +4,11 @@
       <CardProfile />
       <CardApp />
       <CardFavorites />
-      <VanTabs class="tab" @click="clicked">
+      <VanTabs class="tab">
         <VanTab title="创建歌单" class="tab__title"></VanTab>
         <VanTab title="收藏歌单"></VanTab>
       </VanTabs>
-      <CardPlaylist v-if="login" :clauses="clauses" />
+      <CardPlaylist v-if="login.loginStatus" :clauses="clauses" />
     </div>
     <div class="my__top-bar">
       <HamburgerButton theme="outline" size="24" fill="#ffffff" />
@@ -25,124 +25,12 @@ import CardApp from './CardApp.vue';
 import CardFavorites from './CardFavorites.vue';
 import PlaylistCluaseModel from '@/models/PlaylistClauseModel.js';
 import { defineAsyncComponent, ref } from 'vue';
+import { useLogin } from '@/stores/login.js';
 
 const hasScrollDown = ref(false);
 
 const CardPlaylist = defineAsyncComponent(() => import('./CardPlaylist.vue'));
-const login = ref(false);
-
-const clickedName = ref(1);
-function clicked() {
-  clickedName.value++;
-}
-
-setTimeout(() => {
-  login.value = true;
-}, 2000);
-const clauses = [
-  new PlaylistCluaseModel({
-    title: 'Lover',
-    songNumber: 9,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: 'running',
-    songNumber: 10,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  }),
-  new PlaylistCluaseModel({
-    title: '我所怀念的',
-    songNumber: 11,
-    src: null,
-    isLove: false
-  })
-];
+const login = useLogin;
 </script>
 <style lang="scss" scoped>
 @import '@/assets/var.scss';

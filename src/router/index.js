@@ -9,15 +9,17 @@ const router = createRouter({
     {
       path: '/',
       name: Pages.home,
-      redirect: { name: Pages.my },
-      component: MyPage,
-      children: [
-        {
-          path: 'my',
-          name: Pages.my,
-          component: MyPage
-        }
-      ]
+      redirect: { name: Pages.my }
+    },
+    {
+      path: '/my',
+      name: Pages.my,
+      component: MyPage
+    },
+    {
+      path: '/login',
+      name: Pages.login,
+      component: () => import('@/views/login/LoginPage.vue')
     }
   ]
 });

@@ -6,4 +6,7 @@
 <style lang="scss">
 @import './assets/base.scss';
 @import '@icon-park/vue-next/styles/index.css';
+#app {
+  height: 100%;
+}
 </style>

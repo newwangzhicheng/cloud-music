@@ -8,7 +8,7 @@
         <VanTab title="创建歌单" class="tab__title"></VanTab>
         <VanTab title="收藏歌单"></VanTab>
       </VanTabs>
-      <CardPlaylist v-if="login.loginStatus" :clauses="clauses" />
+      <CardPlaylist v-if="loginStatus" :clauses="clauses" />
     </div>
     <div class="my__top-bar">
       <HamburgerButton theme="outline" size="24" fill="#ffffff" />
@@ -19,24 +19,28 @@
 </template>
 <script setup>
 import { HamburgerButton, Search } from '@icon-park/vue-next';
+import PlaylistCluaseModel from '@/models/PlaylistClauseModel.js';
+import { defineAsyncComponent, ref } from 'vue';
+import { useLogin } from '@/stores/login.js';
+import { storeToRefs } from 'pinia';
 import TopProfile from './TopProfile.vue';
 import CardProfile from './CardProfile.vue';
 import CardApp from './CardApp.vue';
 import CardFavorites from './CardFavorites.vue';
-import PlaylistCluaseModel from '@/models/PlaylistClauseModel.js';
-import { defineAsyncComponent, ref } from 'vue';
-import { useLogin } from '@/stores/login.js';
+document.querySelector('meta[name="theme-color"]').setAttribute('content', 'rgb(15, 15, 15)');
 
 const hasScrollDown = ref(false);
 
 const CardPlaylist = defineAsyncComponent(() => import('./CardPlaylist.vue'));
-const login = useLogin;
+
+const { loginStatus } = storeToRefs(useLogin);
 </script>
 <style lang="scss" scoped>
 @import '@/assets/var.scss';
 $top-bar-height: 30px;
 .my {
   background: rgb(15, 15, 15);
+  height: 100vh;
   .my__top-bar {
     position: fixed;
     top: 0;

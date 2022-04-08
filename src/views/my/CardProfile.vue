@@ -1,5 +1,5 @@
 <template>
-  <CardBlock class="profile-card">
+  <CardBlock class="profile-card" @click="router.push({ name: Pages.login })">
     <VanImage round lazy-load fit="cover" class="profile-card__profile" src="">
       <template #error><Avatar theme="outline" size="30" fill="#333" /></template>
       <template #loading><Avatar theme="outline" size="30" fill="#333" /></template>
@@ -9,8 +9,12 @@
   </CardBlock>
 </template>
 <script setup>
-import CardBlock from '@/components/CardBlock.vue';
 import { Avatar } from '@icon-park/vue-next';
+import { useRouter } from 'vue-router';
+import Pages from '@/router/pages.js';
+import CardBlock from '@/components/CardBlock.vue';
+
+const router = useRouter();
 </script>
 <style lang="scss" scoped>
 $profile-size: 75px;

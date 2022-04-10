@@ -1,14 +1,16 @@
 <template>
   <div class="my">
     <div class="my__grid-card">
-      <CardProfile />
-      <CardApp />
-      <CardFavorites />
-      <VanTabs class="tab">
-        <VanTab title="创建歌单" class="tab__title"></VanTab>
-        <VanTab title="收藏歌单"></VanTab>
-      </VanTabs>
-      <CardPlaylist v-if="loginStatus" :clauses="clauses" />
+      <CardProfile :avatar-url="avatarUrl" :nick-name="nickName" />
+      <div v-if="loginStatus">
+        <CardApp />
+        <CardFavorites />
+        <VanTabs class="tab">
+          <VanTab title="创建歌单" class="tab__title"></VanTab>
+          <VanTab title="收藏歌单"></VanTab>
+        </VanTabs>
+        <CardPlaylist :clauses="clauses" />
+      </div>
     </div>
     <div class="my__top-bar">
       <HamburgerButton theme="outline" size="24" fill="#ffffff" />
@@ -21,7 +23,7 @@
 import { HamburgerButton, Search } from '@icon-park/vue-next';
 import PlaylistCluaseModel from '@/models/PlaylistClauseModel.js';
 import { defineAsyncComponent, ref } from 'vue';
-import { useLogin } from '@/stores/login.js';
+import { useUser } from '@/stores/user.js';
 import { storeToRefs } from 'pinia';
 import TopProfile from './TopProfile.vue';
 import CardProfile from './CardProfile.vue';
@@ -33,7 +35,13 @@ const hasScrollDown = ref(false);
 
 const CardPlaylist = defineAsyncComponent(() => import('./CardPlaylist.vue'));
 
-const { loginStatus } = storeToRefs(useLogin);
+const { loginStatus, profile } = storeToRefs(useUser());
+const avatarUrl = ref('');
+const nickName = ref('');
+if (loginStatus.value) {
+  avatarUrl.value = profile.value.avatarUrl;
+  nickName.value = profile.value.nickName;
+}
 </script>
 <style lang="scss" scoped>
 @import '@/assets/var.scss';

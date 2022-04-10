@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { useUser } from '@/stores/api.js';
+import { useRouter } from 'vue-router';
+import Pages from '../router/pages';
 
 const service = axios.create({
   timeout: 20 * 1000,
@@ -10,9 +13,14 @@ const service = axios.create({
 service.interceptors.request.use(
   async (config) => {
     /** params是url参数 */
+    const user = useUser();
+    if (!user.loginStatus) {
+      const router = useRouter();
+      router.push({ name: Pages.login });
+    }
     config.params = {
-      ...config.params,
-      t: Date.now()
+      ...config.params
+      // t: Date.now()
     };
     return config;
   },
@@ -32,10 +40,13 @@ service.interceptors.response.use(
 );
 
 const Http = {
-  get(url, params = {}) {
+  get(url, params = {}, config = {}) {
     return new Promise((resolve, reject) => {
       service
-        .get(url, JSON.stringify(params))
+        .get(url, {
+          params,
+          ...config
+        })
         .then((res) => {
           resolve(res.data);
         })

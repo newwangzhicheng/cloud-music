@@ -7,14 +7,14 @@ const router = new Router();
 app.use(async (ctx, next) => {
   ctx.set('Access-Control-Allow-Origin', ctx.headers.origin);
   ctx.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  ctx.set('Access-Control-Allow-Headers', '*');
+  ctx.set('Access-Control-Allow-Headers', 'Content-Type, Accept');
   ctx.set('Access-Control-Allow-Credentials', true);
   next();
 });
 
-router.get('/hi', (ctx) => {
+router.get('/login/cellphone', (ctx) => {
   const data = Mock.mock({
-    description: '测试的数据'
+    success: true
   });
   ctx.body = data;
 });

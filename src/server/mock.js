@@ -12,9 +12,12 @@ app.use(async (ctx, next) => {
   next();
 });
 
-router.get('/login/cellphone', (ctx) => {
+router.get('/login/cellphone/', (ctx) => {
+  console.log('login');
   const data = Mock.mock({
-    success: true
+    code: 200,
+    token: '2432dsfgaes',
+    cookie: '23523ecbhouierhng'
   });
   ctx.body = data;
 });

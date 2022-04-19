@@ -1,14 +1,17 @@
 import axios from 'axios';
-import { useUser } from '@/stores/api.js';
+import { useUser } from '@/stores/user.js';
 import { useRouter } from 'vue-router';
 import Pages from '../router/pages';
 
+// const baseURL = window.config.BASE_URL;
+const baseURL =
+  process.env.NODE_ENV === 'development' ? window.config.DEV_URL : window.config.BASE_URL;
+console.log('baseURL :>> ', baseURL);
 const service = axios.create({
   timeout: 20 * 1000,
   withCredentials: true,
-  baseURL: window.config.BASE_URL
+  baseURL
 });
-
 /** 请求拦截 */
 service.interceptors.request.use(
   async (config) => {

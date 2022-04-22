@@ -1,8 +1,7 @@
 <template>
-  <div class="p-4 col h-screen bg-light-50 dark:bg-dark-900 transition-bg duration-300">
-    <!-- <div class="my__grid-card">
-      <CardProfile :avatar-url="avatarUrl" :nick-name="nickName" />
-      <div v-if="loginStatus">
+  <div class="p-4 h-screen w-screen bg-light-400 dark:bg-dark-400 transition-bg duration-150">
+    <div>
+      <!-- <div v-if="isLogin">
         <CardApp />
         <CardFavorites />
         <VanTabs class="tab">
@@ -10,11 +9,12 @@
           <VanTab title="收藏歌单"></VanTab>
         </VanTabs>
         <CardPlaylist :clauses="clauses" />
-      </div>
-    </div> -->
-    <div class="flex justify-between">
+      </div> -->
+    </div>
+    <CardProfile src="" title="" />
+    <div class="flex justify-between fixed w-[calc(100%-2rem)]">
       <HamburgerButton theme="outline" size="24" :fill="isDarkMode ? '#fff' : '#000'" />
-      <TopProfile v-show="isLogin" />
+      <TopProfile v-show="hasScrollDown" />
       <div>
         <SunOne
           v-if="mode === 'light'"
@@ -41,6 +41,7 @@
 import { HamburgerButton, Search, SunOne, DarkMode } from '@icon-park/vue-next';
 import { ref } from 'vue';
 import TopProfile from './TopProfile.vue';
+import CardProfile from './CardProfile.vue';
 import { useModeStore } from '@/stores/mode';
 import { storeToRefs } from 'pinia';
 
@@ -48,5 +49,6 @@ const modeStore = useModeStore();
 const { changeToDarkMode, changeToLightMode } = modeStore;
 const { mode, isDarkMode } = storeToRefs(modeStore);
 
+const hasScrollDown = ref(false);
 const isLogin = ref(false);
 </script>

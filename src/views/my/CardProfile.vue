@@ -1,65 +1,33 @@
 <template>
-  <CardBlock @click="jumpToLoginPage">
-    <div>
-      <img src="./" alt="加载错误" />
-    </div>
+  <CardBlock class="h-24 flex flex-col items-center relative justify-end" @click="jumpToLoginPage">
+    <ImgAvatar :avatar-url="props.avatarUrl" class="h-16 w-16 absolute -top-8" />
+    <p class="font-bold text-2xl text-black dark:text-white select-none">{{ profileTitle }}</p>
   </CardBlock>
 </template>
 <script setup lang="ts">
-// import { Avatar } from '@icon-park/vue-next';
-// import { useRouter } from 'vue-router';
-// import { storeToRefs } from 'pinia';
-// import { useUser } from '@/stores/user.js';
-// import Pages from '@/router/pages.js';
+import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
+import { useUserStore } from '@/stores/user';
+import { Pages } from '@/router/pages';
 import CardBlock from '@/components/CardBlock.vue';
-// import { computed } from 'vue';
+import ImgAvatar from '@/components/ImgAvatar.vue';
+import { computed } from 'vue';
 
-// const props = defineProps({
-//   avatarUrl: {
-//     type: String,
-//     required: true
-//   },
-//   nickName: {
-//     type: String,
-//     required: true
-//   }
-// });
+interface Props {
+  avatarUrl: string;
+  title: string;
+}
+const props = defineProps<Props>();
 
-// const router = useRouter();
-// const { loginStatus } = storeToRefs(useUser());
+const profileTitle = computed(() => {
+  return props.title !== '' ? props.title : '立即登陆 ›';
+});
 
+const router = useRouter();
+const { isLogin } = storeToRefs(useUserStore());
 const jumpToLoginPage = () => {
-  if (!loginStatus.value) {
+  if (!isLogin.value) {
     router.push({ name: Pages.login });
   }
 };
-
-// const name = computed(() => {
-//   return loginStatus.value ? props.nickName : '立即登陆 ›';
-// });
 </script>
-<style lang="scss" scoped>
-$profile-size: 75px;
-.profile-card {
-  margin-top: $profile-size;
-  height: 100px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-
-  .profile-card__profile {
-    position: relative;
-    top: calc($profile-size / 2 * (-1));
-    width: $profile-size;
-    height: $profile-size;
-  }
-  .profile-card__user-name {
-    font-size: 20px;
-    color: white;
-    position: relative;
-    top: -20px;
-  }
-}
-</style>

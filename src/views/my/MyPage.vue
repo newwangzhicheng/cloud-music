@@ -1,18 +1,13 @@
 <template>
-  <div class="p-4 h-screen w-screen bg-light-400 dark:bg-dark-400 transition-bg duration-150">
-    <div>
-      <!-- <div v-if="isLogin">
-        <CardApp />
-        <CardFavorites />
-        <VanTabs class="tab">
-          <VanTab title="创建歌单" class="tab__title"></VanTab>
-          <VanTab title="收藏歌单"></VanTab>
-        </VanTabs>
-        <CardPlaylist :clauses="clauses" />
-      </div> -->
+  <div
+    class="h-screen w-screen bg-light-400 dark:bg-dark-400 transition-bg duration-150 relative box-border p-4"
+  >
+    <div class="w-full relative top-16">
+      <CardProfile :avatar-url="avatarUrl" :title="title" />
     </div>
-    <CardProfile src="" title="" />
-    <div class="flex justify-between fixed w-[calc(100%-2rem)]">
+    <div
+      class="w-[calc(100%-2rem)] flex justify-between items-end h-10 fixed top-0 bg-light-400 dark:bg-dark-400 transition-bg duration-150"
+    >
       <HamburgerButton theme="outline" size="24" :fill="isDarkMode ? '#fff' : '#000'" />
       <TopProfile v-show="hasScrollDown" />
       <div>
@@ -49,6 +44,8 @@ const modeStore = useModeStore();
 const { changeToDarkMode, changeToLightMode } = modeStore;
 const { mode, isDarkMode } = storeToRefs(modeStore);
 
+const avatarUrl = ref('');
+const title = ref('');
+
 const hasScrollDown = ref(false);
-const isLogin = ref(false);
 </script>
